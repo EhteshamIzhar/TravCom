@@ -55,6 +55,17 @@ public class FoodList extends AppCompatActivity {
 
     }
 
+
+    public void see(View v)
+    {
+
+        Intent i = new Intent(FoodList.this,ttsJava.class);
+        startActivity(i);
+    }
+
+
+
+
     private void lostListFood(String categoryId) {
         adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(Food.class,
                 R.layout.food_item,

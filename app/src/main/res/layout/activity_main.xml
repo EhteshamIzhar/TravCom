@@ -25,6 +25,7 @@
             android:textColor="@android:color/white"
             android:text="@string/slogan"
             android:layout_width="200dp"
+            android:textSize="22sp"
             android:layout_height="wrap_content" />
 
 

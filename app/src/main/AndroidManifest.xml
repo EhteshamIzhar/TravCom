@@ -2,7 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.parii.travcom">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -39,7 +45,8 @@
         <activity android:name=".songs" />
         <activity android:name=".chatBot" />
         <activity android:name=".ttsJava" />
-        <activity android:name=".Detect"></activity>
+        <activity android:name=".Detect" />
+        <activity android:name=".Listen"></activity>
     </application>
 
 </manifest>

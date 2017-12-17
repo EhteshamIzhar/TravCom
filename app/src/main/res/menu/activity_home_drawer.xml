@@ -4,6 +4,13 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/mood"
+            android:icon="@drawable/echill"
+            android:iconTint="@android:color/white"
+            android:title="PLay Songs" />
+
         <item
             android:id="@+id/d1"
             android:icon="@drawable/d1"

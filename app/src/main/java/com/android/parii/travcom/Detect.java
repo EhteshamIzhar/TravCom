@@ -1,31 +1,4 @@
-
 package com.android.parii.travcom;
-
-import android.*;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.util.SparseArray;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 
 import android.Manifest;
 import android.content.Context;
@@ -58,7 +31,14 @@ import com.google.android.gms.vision.face.Landmark;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class Detect extends AppCompatActivity  {
+public class Detect extends AppCompatActivity implements View.OnClickListener {
+
+    float x = 0;
+    String Happy = "https://www.youtube.com/results?search_query=Happy+mood+Songs+Playlist";
+    String Sad = "https://www.youtube.com/results?search_query=emotional%27+Songs+List";
+    String Energy ="https://www.youtube.com/results?search_query=Energitic+Songs+List";
+    String Chill = "https://www.youtube.com/results?search_query=Energitic+Songs+List";
+    String okay = "https://www.youtube.com/results?search_query=Energitic+Songs+List";
 
     ImageView imageView, imgTakePicture;
     Button btnProcessNext, btnTakePicture;
@@ -77,9 +57,9 @@ public class Detect extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_detect);
 
-        imageArray = new int[]{R.drawable.me, R.drawable.me, R.drawable.me};
+        // imageArray = new int[]{R.drawable.demo, R.drawable.demo, R.drawable.demo};
         detector = new FaceDetector.Builder(getApplicationContext())
                 .setTrackingEnabled(false)
                 .setLandmarkType(FaceDetector.ALL_CLASSIFICATIONS)
@@ -91,30 +71,18 @@ public class Detect extends AppCompatActivity  {
     }
 
 
-    public void see(View v) {
+    public void next(View v)
+    {
 
-        Intent i = new Intent(Detect.this,Webview.class);
+        Intent i = new Intent(Detect.this,songs.class);
+        i.putExtra("x",x);
         startActivity(i);
     }
 
 
-    public void take(View v) {
-
-        ActivityCompat.requestPermissions(Detect.this, new
-                String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
-    }
 
 
-
-    public void imgtake(View v) {
-        ActivityCompat.requestPermissions(Detect.this, new
-                String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
-
-    }
-
-
-    private void initViews()
-    {
+    private void initViews() {
         // imageView = (ImageView) findViewById(R.id.imageView);
         imgTakePicture = (ImageView) findViewById(R.id.imgTakePic);
         // btnProcessNext = (Button) findViewById(R.id.btnProcessNext);
@@ -122,20 +90,19 @@ public class Detect extends AppCompatActivity  {
         // txtSampleDesc = (TextView) findViewById(R.id.txtSampleDescription);
         txtTakenPicDesc = (TextView) findViewById(R.id.txtTakePicture);
 
-        //processImage(imageArray[currentIndex]);
-        //currentIndex++;
+        //    processImage(imageArray[currentIndex]);
+        //     currentIndex++;
 
-        //btnProcessNext.setOnClickListener(this);
-        //   btnTakePicture.setOnClickListener(this);
-        //   imgTakePicture.setOnClickListener(this);
+        //   btnProcessNext.setOnClickListener(this);
+        btnTakePicture.setOnClickListener(this);
+        imgTakePicture.setOnClickListener(this);
     }
 
-
-    /*
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
+            /*
             case R.id.btnProcessNext:
                 imageView.setImageResource(imageArray[currentIndex]);
                 processImage(imageArray[currentIndex]);
@@ -146,21 +113,18 @@ public class Detect extends AppCompatActivity  {
 
                 break;
 
-
-
+*/
             case R.id.btnTakePicture:
                 ActivityCompat.requestPermissions(Detect.this, new
-                        String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
+                        String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
                 break;
 
             case R.id.imgTakePic:
                 ActivityCompat.requestPermissions(Detect.this, new
-                        String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
+                        String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
                 break;
         }
     }
-
-    */
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -187,8 +151,7 @@ public class Detect extends AppCompatActivity  {
         }
     }
 
-    private void launchMediaScanIntent()
-    {
+    private void launchMediaScanIntent() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         mediaScanIntent.setData(imageUri);
         this.sendBroadcast(mediaScanIntent);
@@ -230,7 +193,7 @@ public class Detect extends AppCompatActivity  {
                 canvas.drawBitmap(bitmap, 0, 0, paint);
                 Frame frame = new Frame.Builder().setBitmap(editedBitmap).build();
                 SparseArray<Face> faces = detector.detect(frame);
-                txtSampleDesc.setText(" . ");
+                txtSampleDesc.setText(null);
 
                 for (int index = 0; index < faces.size(); ++index) {
                     Face face = faces.valueAt(index);
@@ -267,27 +230,30 @@ public class Detect extends AppCompatActivity  {
                 txtSampleDesc.setText("Could not set up the detector!");
             }
         }
+
+
+        private Bitmap decodeBitmapImage(int image) {
+            int targetW = 300;
+            int targetH = 300;
+            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+            bmOptions.inJustDecodeBounds = true;
+
+            BitmapFactory.decodeResource(getResources(), image,
+                    bmOptions);
+
+            int photoW = bmOptions.outWidth;
+            int photoH = bmOptions.outHeight;
+
+            int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+            bmOptions.inJustDecodeBounds = false;
+            bmOptions.inSampleSize = scaleFactor;
+
+            return BitmapFactory.decodeResource(getResources(), image,
+                    bmOptions);
+        }
+
+
     */
-    private Bitmap decodeBitmapImage(int image) {
-        int targetW = 300;
-        int targetH = 300;
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-
-        BitmapFactory.decodeResource(getResources(), image,
-                bmOptions);
-
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
-
-        int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-
-        return BitmapFactory.decodeResource(getResources(), image,
-                bmOptions);
-    }
-
     private void processCameraPicture() throws Exception {
         Bitmap bitmap = decodeBitmapUri(this, imageUri);
         if (detector.isOperational() && bitmap != null) {
@@ -308,7 +274,7 @@ public class Detect extends AppCompatActivity  {
 
             for (int index = 0; index < faces.size(); ++index) {
                 Face face = faces.valueAt(index);
-                float x = face.getIsSmilingProbability();
+                x = face.getIsSmilingProbability();
                 canvas.drawRect(
                         face.getPosition().x,
                         face.getPosition().y,
@@ -318,10 +284,10 @@ public class Detect extends AppCompatActivity  {
 
                 canvas.drawText("Face " + (index + 1), face.getPosition().x + face.getWidth(), face.getPosition().y + face.getHeight(), paint);
 
-                txtTakenPicDesc.setText("FACE " + (index + 1) + "\n");
-                txtTakenPicDesc.setText(txtTakenPicDesc.getText() + "Smile probability:" + " " + face.getIsSmilingProbability() + "\n");
-                txtTakenPicDesc.setText(txtTakenPicDesc.getText() + "Left Eye Is Open Probability: " + " " + face.getIsLeftEyeOpenProbability() + "\n");
-                txtTakenPicDesc.setText(txtTakenPicDesc.getText() + "Right Eye Is Open Probability: " + " " + face.getIsRightEyeOpenProbability() + "\n\n");
+                // txtTakenPicDesc.setText("FACE " + (index + 1) + "\n");
+                txtTakenPicDesc.setText(txtTakenPicDesc.getText() + "You seem to be" + "  " + face.getIsSmilingProbability() + " Happy \n");
+                //  txtTakenPicDesc.setText(txtTakenPicDesc.getText() + "Left Eye Is Open Probability: " + " " + face.getIsLeftEyeOpenProbability() + "\n");
+                //  txtTakenPicDesc.setText(txtTakenPicDesc.getText() + "Right Eye Is Open Probability: " + " " + face.getIsRightEyeOpenProbability() + "\n\n");
 
                 for (Landmark landmark : face.getLandmarks())
                 {
@@ -331,19 +297,19 @@ public class Detect extends AppCompatActivity  {
                 }
 
 
-                if(x > 0.800)
-                {
+                //  if(x > 0.800)
+                // {
 
-                    Intent i = new Intent(Detect.this,Webview.class);
-                    startActivity(i);
-                }
+                //     Intent i = new Intent(MainActivity.this,Webview.class);
+                //      startActivity(i);
+                // }
             }
 
             if (faces.size() == 0) {
                 txtTakenPicDesc.setText("Scan Failed: Found nothing to scan");
             } else {
                 imgTakePicture.setImageBitmap(editedBitmap);
-                txtTakenPicDesc.setText(txtTakenPicDesc.getText() + "No of Faces Detected: " + " " + String.valueOf(faces.size()));
+                //txtTakenPicDesc.setText(txtTakenPicDesc.getText() + "No of Faces Detected: " + " " + String.valueOf(faces.size()));
             }
         } else {
             txtTakenPicDesc.setText("Could not set up the detector!");

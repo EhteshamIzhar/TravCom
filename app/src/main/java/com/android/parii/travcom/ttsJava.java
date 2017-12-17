@@ -1,4 +1,6 @@
 package com.android.parii.travcom;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Environment;
 import android.speech.tts.TextToSpeech;
 //import android.support.v7.app.ActionBarActivity;
@@ -6,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -91,25 +94,29 @@ public class ttsJava extends Activity {
     FirebaseDatabase database;
     DatabaseReference category;
 
+    Button b;
     EditText textmsg;
     static final int READ_BLOCK_SIZE = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_tts_java);
 
 
         //Init Firebase
         database = FirebaseDatabase.getInstance();
         category = database.getReference("Category");
 
+        b= (Button)findViewById(R.id.button1);
         textmsg=(EditText)findViewById(R.id.editText1);
     }
 
     // write text to file
-    public void WriteBtn(View v) {
+    public void WriteBtn(View v)
+    {
         // add-write text into file
-        try {
+        try
+        {
             FileOutputStream fileout=openFileOutput("abbrev-deu.txt", MODE_PRIVATE);
             OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
             outputWriter.write(textmsg.getText().toString());
@@ -119,15 +126,27 @@ public class ttsJava extends Activity {
             Toast.makeText(getBaseContext(), "File saved successfully!",
                     Toast.LENGTH_SHORT).show();
 
-        } catch (Exception e) {
+
+            textmsg.setBackgroundColor(Color.WHITE);
+            textmsg.setTextColor(Color.WHITE);
+           // v.setVisibility(i);
+            b.setTextColor(Color.WHITE);
+            b.setBackgroundColor(Color.WHITE);
+
+        }
+
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
 
     // Read text from file
-    public void ReadBtn(View v) {
+    public void ReadBtn(View v)
+    {
         //reading text from file
-        try {
+        try
+        {
             FileInputStream fileIn=openFileInput("abbrev-deu.txt");
             InputStreamReader InputRead= new InputStreamReader(fileIn);
 
@@ -140,8 +159,12 @@ public class ttsJava extends Activity {
                 String readstring=String.copyValueOf(inputBuffer,0,charRead);
                 s +=readstring;
             }
-            InputRead.close();
-            textmsg.setText(s);
+
+            Intent i = new Intent(ttsJava.this,Listen.class);
+            i.putExtra("okay",s);
+            startActivity(i);
+         //   InputRead.close();
+          //  textmsg.setText(s);
 
 
         } catch (Exception e) {

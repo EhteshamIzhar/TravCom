@@ -93,11 +93,7 @@ public class Home extends AppCompatActivity
 
 
 
-    public void see(View v) {
 
-        Intent i = new Intent(Home.this,ttsJava.class);
-        startActivity(i);
-    }
 
 
 
@@ -180,7 +176,12 @@ public class Home extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.d1)
+        if(id == R.id.mood)
+        {
+                Intent i = new Intent(Home.this,Detect.class);
+                startActivity(i);
+        }
+        else if (id == R.id.d1)
         {//book
             Toast.makeText(getBaseContext(),"OKAY FINE",Toast.LENGTH_LONG);
             Intent i = new Intent(Home.this, ttsJava.class);

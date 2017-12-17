@@ -43,7 +43,7 @@ dependencies {
     //compile 'com.google.android.gms:play-services-vision:11.4.0'
 
     //after change
-     compile 'com.google.android.gms:play-services-vision:11.0.4'
+    compile 'com.google.android.gms:play-services-vision:11.0.4'
 
     compile 'com.cepheuen.elegant-number-button:lib:1.0.2'
     compile 'info.hoang8f:fbutton:1.0.5'
@@ -58,6 +58,7 @@ dependencies {
     compile 'com.github.kittinunf.fuel:fuel-android:1.9.0'
 
 }
+
 
 
 

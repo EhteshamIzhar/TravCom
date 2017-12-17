@@ -45,7 +45,19 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <TextView
+        android:id="@+id/pp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chat with me"
+        android:textSize="22sp"
+        android:paddingLeft="120dp"
+        android:textColor="#0000ff"
+
+        />
+
     <ScrollView
+        android:layout_below="@id/pp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/user_input_container">

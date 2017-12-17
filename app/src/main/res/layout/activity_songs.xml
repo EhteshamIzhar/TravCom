@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.parii.travcom.songs">
+    tools:context="com.android.parii.hack17.songs">
 
 
     <LinearLayout
@@ -21,6 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:onClick="webb"
+            android:textColor="#00ff0f"
             android:id="@+id/smile"
             android:layout_marginTop="0dp"
             android:textStyle="bold"
@@ -30,8 +32,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <TextView
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:text="Or Choose Yours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="40dp"
             android:orientation="horizontal"
             android:layout_weight="2"
             android:layout_width="match_parent"
@@ -99,11 +110,6 @@
                 android:layout_weight="1"/>
 
         </LinearLayout>
-
-
-
-
-
 
 
     </LinearLayout>
