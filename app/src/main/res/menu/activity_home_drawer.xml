@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/d1"
+            android:icon="@drawable/d1"
+            android:iconTint="@android:color/white"
+            android:title="Listen Books" />
+
+        <item
+            android:id="@+id/d2"
+            android:icon="@drawable/d2"
+            android:iconTint="@android:color/white"
+            android:title="Detect Text" />
+
+        <item
+            android:id="@+id/d3"
+            android:icon="@drawable/d3"
+            android:iconTint="@android:color/white"
+            android:title="Fitness Freak??" />
+
+        <item
+            android:id="@+id/d4"
+            android:icon="@drawable/d4"
+            android:iconTint="@android:color/white"
+            android:title="Emergency" />
+        <item
+            android:id="@+id/d5"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:iconTint="@android:color/white"
+            android:title="Sign Out" />
+
+
+
+    </group>
+
+
+</menu>

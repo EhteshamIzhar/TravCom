@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TravCom</string>
+    <string name="slogan">  No Companion?? \n You are at the Right Place !!</string>
+    <string name="title_activity_home">Home</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="google_place_api">AIzaSyDfFIQWHBGtHR06Avj2n2vrSC64anme6b4</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="username">ff8cad5d-089b-4da9-aff0-9c440844dd42</string>
+    <string name="password">vy5ffTRo1jXC</string>
+    <string name="workspace">de14260a-7ed5-4866-978b-dbdb6d7a0ca3</string>
+    <string name="title_activity_maps">Map</string>
+
+</resources>

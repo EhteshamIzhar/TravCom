@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.parii.travcom.chatBot">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/border"
+        android:id="@+id/user_input_container">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_weight="9"
+                android:layout_height="wrap_content"
+                android:hint="Message Please"
+                android:id="@+id/user_input"
+                android:imeOptions="actionDone"
+                android:inputType="textShortMessage"
+                />
+
+            <Button
+                android:id="@+id/okay"
+                android:layout_weight="1.3"
+                android:layout_width="0dp"
+                android:backgroundTint="#4c9d56"
+                android:background="@drawable/ic_send_black_24dp"
+                android:layout_height="35dp"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+    </android.support.design.widget.TextInputLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/user_input_container">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:background="@drawable/messg"
+            android:id="@+id/conversation"
+            android:textSize="18sp"
+            />
+    </ScrollView>
+
+</RelativeLayout>
+

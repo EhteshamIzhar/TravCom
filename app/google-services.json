@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "898870583327",
+    "firebase_url": "https://travcom-56170.firebaseio.com",
+    "project_id": "travcom-56170",
+    "storage_bucket": "travcom-56170.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898870583327:android:906118fbaeaf8684",
+        "android_client_info": {
+          "package_name": "com.android.parii.travcom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "898870583327-ttnlqhtltilfneli6ap40phgm63gibkr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.parii.travcom",
+            "certificate_hash": "e295a1ca219d45c1f0aeb2100e2e6fc95c477455"
+          }
+        },
+        {
+          "client_id": "898870583327-snmp5ahrf87c4cpqpnb7rfnj07jsqtd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBnjGHTjNW7HZeIiq0r0GqV4qMVQjZTUE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "898870583327-snmp5ahrf87c4cpqpnb7rfnj07jsqtd2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

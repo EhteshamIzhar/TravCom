@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/me"
+    tools:context="com.android.parii.travcom.MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="89dp"
+        android:layout_marginLeft="89dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        style="@style/Base.ThemeOverlay.AppCompat.Light"
+        tools:ignore="UseCompoundDrawables">
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/txtSlogan"
+            android:textColor="@android:color/white"
+            android:text="@string/slogan"
+            android:layout_width="200dp"
+            android:textSize="25sp"
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/btnSignUp"
+            android:text="Sign Up"
+            android:textColor="@android:color/white"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/btnSignUp"
+
+            />
+
+            <!--
+            app:buttonColor="@color/btnSignUp"
+            android:shadowColor="@android:color/black"
+            app:shadowEnabled="true"
+            app:shadowHeight="5dp"
+            app:cornerRadius="4dp"
+
+            -->
+
+
+
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:text="Sign In"
+            android:textColor="@android:color/white"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@color/btnSignActive"
+
+            />
+            <!--
+            app:buttonColor="@color/btnSignActive"
+            android:shadowColor="@android:color/black"
+            app:shadowEnabled="true"
+            app:shadowHeight="5dp"
+            app:cornerRadius="4dp"
+
+            -->
+
+
+    </LinearLayout>
+</RelativeLayout>
