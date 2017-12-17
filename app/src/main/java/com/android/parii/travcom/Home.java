@@ -91,6 +91,20 @@ public class Home extends AppCompatActivity
         loadMenu();
     }
 
+
+
+    public void see(View v) {
+
+        Intent i = new Intent(Home.this,ttsJava.class);
+        startActivity(i);
+    }
+
+
+
+
+
+
+
     private void loadMenu() {
         adapter = new FirebaseRecyclerAdapter<Category, MenuViewHolder>(Category.class, R.layout.menu_item, MenuViewHolder.class, category) {
             @Override
@@ -141,10 +155,10 @@ public class Home extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId()) {
-            case R.id.songs:
-                //Intent intent = new Intent(this, ActivityForItemOne.class);
-              //  this.startActivity(intent);
-                Toast.makeText(getApplicationContext(),"Sun le zara", Toast.LENGTH_SHORT).show();
+            case R.id.songs: {
+
+                Toast.makeText(getApplicationContext(), "Sun le zara", Toast.LENGTH_SHORT).show();
+            }
                 break;
             case R.id.filter:
                 Toast.makeText(getApplicationContext(),"filter it bro", Toast.LENGTH_SHORT).show();
@@ -168,9 +182,13 @@ public class Home extends AppCompatActivity
 
         if (id == R.id.d1)
         {//book
+            Toast.makeText(getBaseContext(),"OKAY FINE",Toast.LENGTH_LONG);
+            Intent i = new Intent(Home.this, ttsJava.class);
+            startActivity(i);
             // Handle the camera action
         } else if (id == R.id.d2)
         {
+
 
             //text
         } else if (id == R.id.d3)

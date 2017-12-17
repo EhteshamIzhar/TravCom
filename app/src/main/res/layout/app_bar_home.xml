@@ -26,6 +26,14 @@
 
     <include layout="@layout/content_home" />
 
+    <Button
+        android:layout_marginTop="450dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="okay"
+        android:onClick="see"
+        />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_height="wrap_content"
