@@ -33,7 +33,8 @@ import com.ibm.watson.developer_cloud.http.ServiceCallback;
 
 import java.util.Locale;
 
-public class chatBot extends AppCompatActivity {
+public class chatBot extends AppCompatActivity
+{
 
     // private int x=0;
     private TextView conversation;
@@ -88,15 +89,12 @@ public class chatBot extends AppCompatActivity {
                                           int action, KeyEvent keyEvent) {
                 if(action == EditorInfo.IME_ACTION_DONE )
                 {
-                    // More code here
-                    //x=0;
 
                     final String inputText = userInput.getText().toString();
                     conversation.append(
                             Html.fromHtml("<p><b>You:</b> " + inputText + "</p>")
                     );
 
-                    // Optionally, clear edittext
                     userInput.setText("");
 
                     MessageRequest request = new MessageRequest.Builder()
@@ -109,7 +107,6 @@ public class chatBot extends AppCompatActivity {
                                 @Override
                                 public void onResponse(MessageResponse response)
                                 {
-                                    // More code here
 
                                     final String outputText = response.getText().get(0);
                                     tts.speak(outputText, TextToSpeech.QUEUE_ADD, null, "DEFAULT");
@@ -128,9 +125,9 @@ public class chatBot extends AppCompatActivity {
 
 
 
-                                    if(response.getIntents().get(0).getIntent()
-                                            .endsWith("RequestQuote")) {
-                                        // More code here
+                                    if(response.getIntents().get(0).getIntent().endsWith("RequestQuote"))
+                                    {
+
                                         String quotesURL =
                                                 "https://api.forismatic.com/api/1.0/" +
                                                         "?method=getQuote&format=text&lang=en";
@@ -166,7 +163,7 @@ public class chatBot extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(Exception e) {
-                                    Log.d("Fail","Ho gaya hai bro");
+                                    Log.d("Fail","Ho gaya hai Parii.....debug :( ");
                                 }
 
 
@@ -189,12 +186,6 @@ public class chatBot extends AppCompatActivity {
     }
 
 
-    // public void send(View v) {
-
-    //       x=1;
-
-
-    //  }
 
 
 

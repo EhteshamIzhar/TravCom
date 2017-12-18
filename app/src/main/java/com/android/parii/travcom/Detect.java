@@ -59,7 +59,6 @@ public class Detect extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detect);
 
-        // imageArray = new int[]{R.drawable.demo, R.drawable.demo, R.drawable.demo};
         detector = new FaceDetector.Builder(getApplicationContext())
                 .setTrackingEnabled(false)
                 .setLandmarkType(FaceDetector.ALL_CLASSIFICATIONS)
@@ -90,11 +89,7 @@ public class Detect extends AppCompatActivity implements View.OnClickListener {
         // txtSampleDesc = (TextView) findViewById(R.id.txtSampleDescription);
         txtTakenPicDesc = (TextView) findViewById(R.id.txtTakePicture);
 
-        //    processImage(imageArray[currentIndex]);
-        //     currentIndex++;
-
-        //   btnProcessNext.setOnClickListener(this);
-        btnTakePicture.setOnClickListener(this);
+       
         imgTakePicture.setOnClickListener(this);
     }
 
@@ -102,18 +97,8 @@ public class Detect extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
 
-            /*
-            case R.id.btnProcessNext:
-                imageView.setImageResource(imageArray[currentIndex]);
-                processImage(imageArray[currentIndex]);
-                if (currentIndex == imageArray.length - 1)
-                    currentIndex = 0;
-                else
-                    currentIndex++;
 
-                break;
 
-*/
             case R.id.btnTakePicture:
                 ActivityCompat.requestPermissions(Detect.this, new
                         String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_PERMISSION);
@@ -174,86 +159,7 @@ public class Detect extends AppCompatActivity implements View.OnClickListener {
         super.onSaveInstanceState(outState);
     }
 
-    /*
-        private void processImage(int image)
-        {
 
-            Bitmap bitmap = decodeBitmapImage(image);
-            if (detector.isOperational() && bitmap != null) {
-                editedBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap
-                        .getHeight(), bitmap.getConfig());
-                float scale = getResources().getDisplayMetrics().density;
-                Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                paint.setColor(Color.GREEN);
-                paint.setTextSize((int) (16 * scale));
-                paint.setShadowLayer(1f, 0f, 1f, Color.WHITE);
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setStrokeWidth(6f);
-                Canvas canvas = new Canvas(editedBitmap);
-                canvas.drawBitmap(bitmap, 0, 0, paint);
-                Frame frame = new Frame.Builder().setBitmap(editedBitmap).build();
-                SparseArray<Face> faces = detector.detect(frame);
-                txtSampleDesc.setText(null);
-
-                for (int index = 0; index < faces.size(); ++index) {
-                    Face face = faces.valueAt(index);
-                    canvas.drawRect(
-                            face.getPosition().x,
-                            face.getPosition().y,
-                            face.getPosition().x + face.getWidth(),
-                            face.getPosition().y + face.getHeight(), paint);
-
-
-                    canvas.drawText("Face " + (index + 1), face.getPosition().x + face.getWidth(), face.getPosition().y + face.getHeight(), paint);
-
-                    txtSampleDesc.setText(txtSampleDesc.getText() + "FACE " + (index + 1) + "\n");
-                    txtSampleDesc.setText(txtSampleDesc.getText() + "Smile probability:" + " " + face.getIsSmilingProbability() + "\n");
-                    txtSampleDesc.setText(txtSampleDesc.getText() + "Left Eye Is Open Probability: " + " " + face.getIsLeftEyeOpenProbability() + "\n");
-                    txtSampleDesc.setText(txtSampleDesc.getText() + "Right Eye Is Open Probability: " + " " + face.getIsRightEyeOpenProbability() + "\n\n");
-
-                    for (Landmark landmark : face.getLandmarks()) {
-                        int cx = (int) (landmark.getPosition().x);
-                        int cy = (int) (landmark.getPosition().y);
-                        canvas.drawCircle(cx, cy, 8, paint);
-                    }
-
-
-                }
-
-                if (faces.size() == 0) {
-                    txtSampleDesc.setText("Scan Failed: Found nothing to scan");
-                } else {
-                    imageView.setImageBitmap(editedBitmap);
-                    txtSampleDesc.setText(txtSampleDesc.getText() + "No of Faces Detected: " + " " + String.valueOf(faces.size()));
-                }
-            } else {
-                txtSampleDesc.setText("Could not set up the detector!");
-            }
-        }
-
-
-        private Bitmap decodeBitmapImage(int image) {
-            int targetW = 300;
-            int targetH = 300;
-            BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-            bmOptions.inJustDecodeBounds = true;
-
-            BitmapFactory.decodeResource(getResources(), image,
-                    bmOptions);
-
-            int photoW = bmOptions.outWidth;
-            int photoH = bmOptions.outHeight;
-
-            int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-            bmOptions.inJustDecodeBounds = false;
-            bmOptions.inSampleSize = scaleFactor;
-
-            return BitmapFactory.decodeResource(getResources(), image,
-                    bmOptions);
-        }
-
-
-    */
     private void processCameraPicture() throws Exception {
         Bitmap bitmap = decodeBitmapUri(this, imageUri);
         if (detector.isOperational() && bitmap != null) {
@@ -297,12 +203,6 @@ public class Detect extends AppCompatActivity implements View.OnClickListener {
                 }
 
 
-                //  if(x > 0.800)
-                // {
-
-                //     Intent i = new Intent(MainActivity.this,Webview.class);
-                //      startActivity(i);
-                // }
             }
 
             if (faces.size() == 0) {
